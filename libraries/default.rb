@@ -138,9 +138,7 @@ class ApplicationCookbook
 
     def deploy_provider
       @deploy_provider ||= begin
-        provider = Chef::Platform.provider_for_resource(@deploy_resource, :nothing)
-        provider.load_current_resource
-        provider
+        @deploy_resource.provider_for_action(:nothing)
       end
     end
 
