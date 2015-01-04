@@ -147,7 +147,9 @@ class ApplicationCookbook
     end
 
     def shared_path
-      @deploy_resource.shared_path
+      provider = @deploy_resource.shared_path
+      provider.load_current_resource
+-     provider
     end
 
     def callback(what, callback_code=nil)
