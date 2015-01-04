@@ -138,7 +138,9 @@ class ApplicationCookbook
 
     def deploy_provider
       @deploy_provider ||= begin
-        @deploy_resource.provider_for_action(:nothing)
+        provider = @deploy_resource.provider_for_action(:nothing)
+         provider.load_current_resource
++-     provider
       end
     end
 
@@ -147,9 +149,7 @@ class ApplicationCookbook
     end
 
     def shared_path
-      provider = @deploy_resource.shared_path
-      provider.load_current_resource
--     provider
+      @deploy_resource.shared_path
     end
 
     def callback(what, callback_code=nil)
