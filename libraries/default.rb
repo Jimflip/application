@@ -137,9 +137,11 @@ class ApplicationCookbook
     end
 
     def deploy_provider
+      Chef::Log.debug(" @deploy_provider: #{ @deploy_provider}")
       @deploy_provider ||= begin
         provider = @deploy_resource.provider_for_action(:nothing)
          provider.load_current_resource
+         Chef::Log.debug("provider: #{provider}")
 +-     provider
       end
     end
